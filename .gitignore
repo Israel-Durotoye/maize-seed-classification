@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# macOS
+.DS_Store
+
+# VS Code
+.vscode/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Environment/secrets
+.env
+.env.*
+
+# Logs
+*.log
+
+# Training output/cache
+runs/
+wandb/
+.cache/
+
+# Large datasets
+dataset/
+datasets/
+data/
+
+# TensorFlow / ML model files
+*.h5
+*.keras
+*.tflite
+*.onnx
+*.pt
+*.pth

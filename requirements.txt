@@ -1,0 +1,7 @@
+# Raspberry Pi / desktop inference dependencies (Python 3.10+).
+numpy>=1.24
+Pillow>=10.0
+opencv-python>=4.8
+pyserial>=3.5
+# Install ONE compatible inference runtime separately; see README.md:
+# ai-edge-litert, tflite-runtime, or tensorflow.

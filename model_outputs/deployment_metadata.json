@@ -1,0 +1,31 @@
+{
+  "model_name": "MobileNetV3Large",
+  "image_size": [
+    224,
+    224
+  ],
+  "class_names": [
+    "BAD_SEED",
+    "GOOD_SEED",
+    "NO_MAIZE"
+  ],
+  "class_to_index": {
+    "BAD_SEED": 0,
+    "GOOD_SEED": 1,
+    "NO_MAIZE": 2
+  },
+  "input_color_order": "RGB",
+  "input_dtype": "float32",
+  "external_input_range": [
+    0.0,
+    255.0
+  ],
+  "external_preprocessing": "Resize RGB image to 224x224 and cast to float32. Do not normalize externally; scaling is embedded in the model.",
+  "recommended_confidence_threshold": 0.5,
+  "recommended_margin_threshold": 0.0,
+  "actuator_mapping": {
+    "BAD_SEED": 0,
+    "GOOD_SEED": 1,
+    "NO_MAIZE": null
+  }
+}
