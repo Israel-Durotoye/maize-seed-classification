@@ -1,0 +1,9 @@
+# Dashboard backend (Python 3.11). TensorFlow 2.16.2 is the last release with Intel-Mac wheels
+# and the first to load Keras 3 .keras models.
+tensorflow==2.16.2
+keras>=3.13
+numpy<2
+opencv-python>=4.8
+Pillow>=10.0
+fastapi>=0.110
+uvicorn[standard]>=0.29

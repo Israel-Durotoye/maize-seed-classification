@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Maize Sorter</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cellipse cx='16' cy='17' rx='9' ry='12' fill='%23e9a417'/%3E%3Cellipse cx='16' cy='13' rx='4' ry='5' fill='%23fbe3a1'/%3E%3C/svg%3E" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <svg class="logo" viewBox="0 0 32 32" aria-hidden="true">
+          <ellipse cx="16" cy="17" rx="9" ry="12" fill="var(--maize)" />
+          <ellipse cx="16" cy="13" rx="4" ry="5" fill="var(--maize-light)" />
+        </svg>
+        <div>
+          <h1>Maize Sorter</h1>
+          <p class="subtitle">Live seed quality inspection</p>
+        </div>
+      </div>
+      <div class="status" id="status" data-state="connecting">
+        <span class="dot"></span><span id="statusText">Connecting…</span>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="card camera">
+        <div class="feed">
+          <img id="feed" alt="Live camera feed" />
+          <div class="chip" id="liveChip" hidden>
+            <span id="liveLabel">—</span><span class="chip-conf" id="liveConf"></span>
+          </div>
+          <div class="flash" id="flash"></div>
+          <div class="feed-message" id="feedMessage" hidden></div>
+        </div>
+        <div class="feed-bar">
+          <p class="hint" id="hint">Waiting for the camera…</p>
+          <div class="feed-meta">
+            <label class="camera-select">
+              <span>Camera</span>
+              <select id="cameraSelect"><option>…</option></select>
+            </label>
+            <span class="meta" id="fps">— fps</span>
+            <span class="meta" id="latency">— ms</span>
+          </div>
+        </div>
+      </section>
+
+      <aside class="side">
+        <div class="counters">
+          <article class="card counter good">
+            <h2>Good seeds</h2>
+            <p class="count" id="goodCount">0</p>
+            <p class="foot">Passed inspection</p>
+          </article>
+          <article class="card counter bad">
+            <h2>Bad seeds</h2>
+            <p class="count" id="badCount">0</p>
+            <p class="foot">Rejected</p>
+          </article>
+        </div>
+
+        <article class="card summary">
+          <div class="summary-head">
+            <h2>Total sorted <strong id="totalCount">0</strong> <span class="unsure" id="unsureCount"></span></h2>
+            <button id="resetBtn" class="ghost" type="button">Reset counts</button>
+          </div>
+          <div class="ratio empty" aria-label="Good versus bad share">
+            <div class="ratio-good" id="ratioGood" style="width: 50%"></div>
+          </div>
+          <div class="ratio-legend">
+            <span><i class="sw good"></i><span id="goodPct">0%</span> good</span>
+            <span><span id="badPct">0%</span> bad<i class="sw bad"></i></span>
+          </div>
+        </article>
+
+        <article class="card probs">
+          <h2>What the model sees</h2>
+          <div class="prob-row" data-cls="GOOD_SEED"><span>Good</span><div class="bar"><div></div></div><em>0%</em></div>
+          <div class="prob-row" data-cls="BAD_SEED"><span>Bad</span><div class="bar"><div></div></div><em>0%</em></div>
+          <div class="prob-row" data-cls="NO_MAIZE"><span>Empty</span><div class="bar"><div></div></div><em>0%</em></div>
+        </article>
+      </aside>
+
+      <section class="card log">
+        <div class="log-head">
+          <h2>Recent seeds</h2>
+          <span class="model" id="modelInfo"></span>
+        </div>
+        <ol id="events" class="events"><li class="empty">No seeds counted yet.</li></ol>
+      </section>
+    </main>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

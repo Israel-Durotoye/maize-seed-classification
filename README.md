@@ -497,3 +497,23 @@ Training and deployment follow the
 [Espressif LEDC APIs](https://docs.espressif.com/projects/arduino-esp32/en/latest/api/ledc.html),
 [ESP8266 per-pin waveforms](https://github.com/esp8266/Arduino/blob/3.1.2/cores/esp8266/core_esp8266_waveform.h),
 and [pySerial timeout/access behavior](https://pyserial.readthedocs.io/en/stable/pyserial_api.html).
+
+## Live sorting dashboard (website)
+
+A browser dashboard that runs the newest model on a USB camera and counts good and bad seeds live.
+
+```bash
+./run_dashboard.sh              # first run installs Python deps and builds the site
+./run_dashboard.sh --camera 1   # use the second camera (0 is usually the laptop's built-in one)
+```
+
+Open http://127.0.0.1:8000. You can also switch cameras from the dropdown on the page.
+
+- **Model**: the newest timestamped run in `model_outputs/` (`maize_mobilenetv3large_final.keras`).
+  Per-class thresholds are recomputed from that run's `threshold_search_results.csv` the same way the notebook does.
+- **Counting**: uses the same `DecisionGate` as `main.py`. The camera must first see an empty view. Each seed is
+  counted once, when the model is confident across 3 frames. The view must be empty again before the next seed.
+  Objects that leave without a confident class are listed as *unsure* and are not added to either count.
+- **Options**: `--roi X Y W H` crops the region the model looks at; `--host 0.0.0.0` lets phones on the same Wi-Fi view it.
+- Every counted seed is appended to `web_sort_events.jsonl`.
+- Frontend dev with hot reload: run the server, then `cd web/frontend && npm run dev`.
